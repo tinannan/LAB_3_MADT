@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView primaryTextView;
     private StringBuilder currentInput;
-    private final String operators = "+-*/"; // valid operators
+    private final String operators = "+-×÷"; // valid operators
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus.setOnClickListener(v -> appendOperator("-"));
 
         Button buttonMultiply = findViewById(R.id.bmul);
-        buttonMultiply.setOnClickListener(v -> appendOperator("*"));
+        buttonMultiply.setOnClickListener(v -> appendOperator("×"));
 
         Button buttonDivide = findViewById(R.id.bdiv);
-        buttonDivide.setOnClickListener(v -> appendOperator("/"));
+        buttonDivide.setOnClickListener(v -> appendOperator("÷"));
 
         Button buttonDot = findViewById(R.id.bdot);
         buttonDot.setOnClickListener(v -> appendDot());
@@ -93,6 +93,21 @@ public class MainActivity extends AppCompatActivity {
 
         Button buttonBracket2 = findViewById(R.id.bbrac2);
         buttonBracket2.setOnClickListener(v -> appendToInput(")"));
+
+        Button buttonSquareRoot = findViewById(R.id.bsqrt);
+        buttonSquareRoot.setOnClickListener(v -> appendToInput("√"));
+
+        Button buttonPower = findViewById(R.id.bsquare);
+        buttonPower.setOnClickListener(v -> appendToInput("^"));
+
+        Button buttonFactorial = findViewById(R.id.bfact);
+        buttonFactorial.setOnClickListener(v -> appendOperator("!"));
+
+        Button buttonPercent = findViewById(R.id.bperc);
+        buttonPercent.setOnClickListener(v -> {
+            appendOperator("%");
+            calculateResult();
+        });
 
         Button buttonEquals = findViewById(R.id.bequal);
         buttonEquals.setOnClickListener(v -> calculateResult());
@@ -107,9 +122,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void appendToInput(String value) {
-        if (currentInput.length() == 0 || currentInput.toString().equals("0")) {
+        if (currentInput.length() == 0 || currentInput.toString().equals("0") || currentInput.toString().equals("√")) {
             currentInput.setLength(0); // clear
         }
+        // prevent more than 2 ^^ (tetration)
+        if (value.equals("^")) {
+            int count = 0;
+            int i = currentInput.length() - 1;
+
+            while (i >= 0 && currentInput.charAt(i) == '^') {
+                count++;
+                i--;
+            }
+
+
+            if (count >= 2) {
+                return;
+            }
+        }
+
         currentInput.append(value);
         primaryTextView.setText(currentInput.toString());
     }
@@ -121,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             char lastChar = currentInput.charAt(currentInput.length() - 1);
             // not adding the same operator consecutively
-            if (operators.indexOf(lastChar) == -1) { // lastChar is not an operator
+            if (lastChar != '.' && operators.indexOf(lastChar) == -1) { // lastChar is not an operator
                 currentInput.append(operator);
             }
         }
@@ -134,14 +165,14 @@ public class MainActivity extends AppCompatActivity {
             currentInput.append("0."); // Start with "0."
         } else {
             char lastChar = currentInput.charAt(currentInput.length() - 1);
-            // Allow dot if the last character is a digit
+            // allow dot if the last character is a digit
             if (Character.isDigit(lastChar)) {
-                // Check if there's already a dot in the current number
-                if (!currentInput.toString().contains(".")) {
+                // Check if there's already a dot in the current number or it is an operator
+                if (lastChar != '.' && lastChar != '-' && lastChar != '+' && lastChar != '÷' && lastChar != '×' && lastChar != '!'){
                     currentInput.append("."); // Append the dot
                 }
             } else if (operators.indexOf(lastChar) != -1) {
-                // If the last character is an operator, start a new decimal number
+                // if the last character is an operator start a new decimal number
                 currentInput.append("0."); // Append "0."
             }
         }
@@ -161,8 +192,8 @@ public class MainActivity extends AppCompatActivity {
                 //currentInput.setLength(0); // Clear the current input after calculation if needed
                 //currentInput.append(result); // Optionally store the result for further calculations
             } catch (Exception ex) {
-                // Handle any exceptions that occur during calculation
-                primaryTextView.setText("Error"); // Display an error message
+                // handle exceptions
+                primaryTextView.setText(R.string.error); // Display an error message
                 currentInput.setLength(0); // Clear the current input
             }
         }
@@ -185,8 +216,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private double evaluateExpression(String expression) {
-        // Use your library's evaluation method
+        if (expression.endsWith(".")) {
+            // remove the trailing dot for calculation purposes
+            expression = expression.substring(0, expression.length() - 1);
+        }
+        // library's evaluation method
         Expression e = new Expression(expression);
-        return e.calculate(); // Return the calculated result
+        return e.calculate();
     }
 }

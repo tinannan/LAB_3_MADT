@@ -174,14 +174,14 @@
                                             android:textSize="15sp" />
 
                                         <Button
-                                            android:id="@+id/binv"
+                                            android:id="@+id/bperc"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_margin="3dp"
                                             android:layout_weight="1"
                                             android:backgroundTint="@color/white_grey"
                                             android:padding="6dp"
-                                            android:text="@string/fraction"
+                                            android:text="@string/percent"
                                             android:textAllCaps="false"
                                             android:textColor="#FFFFFF"
                                             android:textSize="15sp" />

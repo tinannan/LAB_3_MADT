@@ -25,4 +25,6 @@
     <string name="_0">0</string>
     <string name="dot">.</string>
     <string name="equals">=</string>
+    <string name="error">Error</string>
+    <string name="percent">%</string>
 </resources>
