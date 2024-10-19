@@ -144,20 +144,9 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal"
-                                    android:weightSum="5">
+                                    android:weightSum="4">
 
-                                        <Button
-                                            android:id="@+id/bfact"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_margin="3dp"
-                                            android:layout_weight="1"
-                                            android:backgroundTint="@color/white_grey"
-                                            android:padding="6dp"
-                                            android:text="@string/x"
-                                            android:textAllCaps="false"
-                                            android:textColor="#FFFFFF"
-                                            android:textSize="15sp" />
+
 
                                         <Button
                                             android:id="@+id/bsquare"
@@ -418,14 +407,15 @@
                                     android:weightSum="4">
 
                                         <Button
-                                            android:id="@+id/bpi"
+                                            android:id="@+id/bfact"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_margin="3dp"
                                             android:layout_weight="1"
                                             android:backgroundTint="@color/white_grey"
                                             android:padding="6dp"
-                                            android:text="@string/pi"
+                                            android:textAllCaps="false"
+                                            android:text="@string/x"
                                             android:textColor="#fff"
                                             android:textSize="15sp" />
 
