@@ -77,31 +77,44 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal"
-                                    android:weightSum="4">
+                                    android:weightSum="5">
 
                                         <Button
-                                            android:id="@+id/bac"
+                                            android:id="@+id/bsquare"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_margin="3dp"
                                             android:layout_weight="1"
                                             android:backgroundTint="@color/white_grey"
                                             android:padding="6dp"
-                                            android:text="@string/ac"
-                                            android:textColor="@color/orange"
-                                            android:textSize="15sp"
-                                            tools:targetApi="lollipop" />
-
+                                            android:text="@string/in_power"
+                                            android:textAllCaps="false"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="15sp" />
                                         <Button
-                                            android:id="@+id/bc"
+                                            android:id="@+id/bsignchange"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_margin="3dp"
                                             android:layout_weight="1"
                                             android:backgroundTint="@color/white_grey"
                                             android:padding="6dp"
-                                            android:text="@string/c"
-                                            android:textColor="@color/orange"
+                                            android:text="@string/signchange"
+                                            android:textAllCaps="false"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="15sp" />
+
+                                        <Button
+                                            android:id="@+id/bperc"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_margin="3dp"
+                                            android:layout_weight="1"
+                                            android:backgroundTint="@color/white_grey"
+                                            android:padding="6dp"
+                                            android:text="@string/percent"
+                                            android:textAllCaps="false"
+                                            android:textColor="#FFFFFF"
                                             android:textSize="15sp" />
 
                                         <Button
@@ -146,19 +159,29 @@
                                     android:orientation="horizontal"
                                     android:weightSum="4">
 
-
-
                                         <Button
-                                            android:id="@+id/bsquare"
+                                            android:id="@+id/bac"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_margin="3dp"
                                             android:layout_weight="1"
                                             android:backgroundTint="@color/white_grey"
                                             android:padding="6dp"
-                                            android:text="@string/in_power"
-                                            android:textAllCaps="false"
-                                            android:textColor="#FFFFFF"
+                                            android:text="@string/ac"
+                                            android:textColor="@color/orange"
+                                            android:textSize="15sp"
+                                            />
+
+                                        <Button
+                                            android:id="@+id/bc"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_margin="3dp"
+                                            android:layout_weight="1"
+                                            android:backgroundTint="@color/white_grey"
+                                            android:padding="6dp"
+                                            android:text="@string/c"
+                                            android:textColor="@color/orange"
                                             android:textSize="15sp" />
 
                                         <Button
@@ -173,18 +196,6 @@
                                             android:textColor="#FFFFFF"
                                             android:textSize="15sp" />
 
-                                        <Button
-                                            android:id="@+id/bperc"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_margin="3dp"
-                                            android:layout_weight="1"
-                                            android:backgroundTint="@color/white_grey"
-                                            android:padding="6dp"
-                                            android:text="@string/percent"
-                                            android:textAllCaps="false"
-                                            android:textColor="#FFFFFF"
-                                            android:textSize="15sp" />
 
                                         <Button
                                             android:id="@+id/bdiv"
@@ -195,7 +206,7 @@
                                             android:backgroundTint="@color/white_grey"
                                             android:padding="6dp"
                                             android:text="@string/division"
-                                            android:textColor="#FFFFFF"
+                                            android:textColor="@color/orange"
                                             android:textSize="15sp" />
 
                                 </LinearLayout>
@@ -259,7 +270,7 @@
                                             android:backgroundTint="@color/white_grey"
                                             android:padding="6dp"
                                             android:text="@string/multiplication"
-                                            android:textColor="#FFFFFF"
+                                            android:textColor="@color/orange"
                                             android:textSize="15sp" />
 
                                 </LinearLayout>
@@ -323,7 +334,7 @@
                                             android:backgroundTint="@color/white_grey"
                                             android:padding="6dp"
                                             android:text="@string/minus"
-                                            android:textColor="#FFFFFF"
+                                            android:textColor="@color/orange"
                                             android:textSize="15sp" />
 
                                 </LinearLayout>
@@ -387,7 +398,7 @@
                                             android:backgroundTint="@color/white_grey"
                                             android:padding="6dp"
                                             android:text="@string/plus"
-                                            android:textColor="#FFFFFF"
+                                            android:textColor="@color/orange"
                                             android:textSize="15sp" />
 
                                 </LinearLayout>

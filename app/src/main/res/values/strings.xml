@@ -27,4 +27,5 @@
     <string name="equals">=</string>
     <string name="error">Error</string>
     <string name="percent">%</string>
+    <string name="signchange">+-</string>
 </resources>

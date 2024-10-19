@@ -16,6 +16,7 @@ import org.mariuszgromada.math.mxparser.*;
 public class MainActivity extends AppCompatActivity {
 
     private TextView primaryTextView;
+    private TextView secondaryTextView;
     private StringBuilder currentInput;
     private final String operators = "+-×÷"; // valid operators
 
@@ -29,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        primaryTextView = findViewById(R.id.idTVprimary); // Adjust this ID based on your layout
+        primaryTextView = findViewById(R.id.idTVprimary);
+        secondaryTextView = findViewById(R.id.idTVSecondary);
         currentInput = new StringBuilder();
         //0
         primaryTextView.setText("0");
+        secondaryTextView.setText("");
         //button click
         setupButtonListeners();
         /*Expression e = new Expression("2+3");
