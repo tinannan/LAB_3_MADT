@@ -192,8 +192,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // update the primary TV
                 primaryTextView.setText(String.valueOf(result));
-                //currentInput.setLength(0); // Clear the current input after calculation if needed
-                //currentInput.append(result); // Optionally store the result for further calculations
+                secondaryTextView.setText(expression);
+                currentInput.setLength(0); // Clear the current input after calculation if needed
+                currentInput.append(result); // Optionally store the result for further calculations
             } catch (Exception ex) {
                 // handle exceptions
                 primaryTextView.setText(R.string.error); // Display an error message
@@ -205,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
         //if length is 1 then display 0
         if (currentInput.length() == 1) {
             primaryTextView.setText("0");
+            secondaryTextView.setText("");
             currentInput.setLength(0); // clear the entire input
         }
         else if (currentInput.length() > 0) {
@@ -216,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
     private void clearAllInput() {
         currentInput.setLength(0); // all clear
         primaryTextView.setText("0"); // clear the TV
+        secondaryTextView.setText("");
     }
 
     private double evaluateExpression(String expression) {

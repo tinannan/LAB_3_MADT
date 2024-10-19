@@ -5,4 +5,5 @@
     <color name="grey">#0D0D0D</color>
     <color name="white_grey">#333535</color>
     <color name="orange">#FF9800</color>
+    <color name="secondaryTV">#CCCCCC</color>
 </resources>

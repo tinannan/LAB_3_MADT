@@ -34,8 +34,8 @@
                             android:paddingTop="30dp"
                             android:text=""
                             android:textAlignment="viewEnd"
-                            android:textColor="@color/grey"
-                            android:textSize="15sp"
+                            android:textColor="@color/secondaryTV"
+                            android:textSize="30sp"
                             tools:ignore="NestedWeights,RtlCompat"
                             android:layout_width="match_parent"/>
 
