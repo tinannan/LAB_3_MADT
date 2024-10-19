@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView secondaryTextView;
     private StringBuilder currentInput;
     private final String operators = "+-×÷"; // valid operators
+    private boolean signChanged = false; // track if the sign has been changed
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
             calculateResult();
         });
 
+        Button buttonSignChange = findViewById(R.id.bsignchange);
+        buttonSignChange.setOnClickListener(v -> changeSign());
+
         Button buttonEquals = findViewById(R.id.bequal);
         buttonEquals.setOnClickListener(v -> calculateResult());
 
@@ -125,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void appendToInput(String value) {
+        signChanged = false;
         if (currentInput.length() == 0 || currentInput.toString().equals("0") || currentInput.toString().equals("√")) {
             currentInput.setLength(0); // clear
         }
@@ -148,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         primaryTextView.setText(currentInput.toString());
     }
     private void appendOperator(String operator) {
+        signChanged = false;
         // if the current input is empty or just "0"
         if (currentInput.length() == 0 || currentInput.toString().equals("0")) {
             currentInput.setLength(0); //clear
@@ -181,6 +188,38 @@ public class MainActivity extends AppCompatActivity {
         }
         primaryTextView.setText(currentInput.toString());
     }
+    private void changeSign() {
+        if (currentInput.length() == 0 || signChanged) {
+            return; // Nothing to change
+        }
+
+        // the last number in the current input
+        int lastIndex = currentInput.length() - 1;
+        StringBuilder number = new StringBuilder();
+
+        while (lastIndex >= 0 && (Character.isDigit(currentInput.charAt(lastIndex)) || currentInput.charAt(lastIndex) == '.')) {
+            number.insert(0, currentInput.charAt(lastIndex)); // Prepend to the number
+            lastIndex--;
+        }
+
+        // if the last character before the number is an operator or if there's no number
+        // toggle the sign of the last number found
+        if (number.length() > 0) {
+            String currentNumber = number.toString();
+            double num = Double.parseDouble(currentNumber);
+            num = -num; // Change sign
+
+            // replace the last number in the input with its negated value
+            String newNumber = String.valueOf(num);
+            currentInput.delete(lastIndex + 1, currentInput.length()); // remove the last number
+            currentInput.append(newNumber);
+
+            primaryTextView.setText(currentInput.toString());
+
+            signChanged = true;
+        }
+    }
+
 
 
     private void calculateResult() {
@@ -193,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
                 // update the primary TV
                 primaryTextView.setText(String.valueOf(result));
                 secondaryTextView.setText(expression);
+                signChanged = false;
                 currentInput.setLength(0); // Clear the current input after calculation if needed
                 currentInput.append(result); // Optionally store the result for further calculations
             } catch (Exception ex) {
