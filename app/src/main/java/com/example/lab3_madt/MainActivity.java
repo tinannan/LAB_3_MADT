@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private StringBuilder currentInput;
     private final String operators = "+-×÷"; // valid operators
     //private boolean signChanged = false; // track if the sign has been changed
-    private static final int MAX_INPUT_LENGTH = 30;
+    private static final int MAX_INPUT_LENGTH = 14;
 
 
     @Override
