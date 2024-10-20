@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView secondaryTextView;
     private StringBuilder currentInput;
     private final String operators = "+-×÷"; // valid operators
-    private boolean signChanged = false; // track if the sign has been changed
+    //private boolean signChanged = false; // track if the sign has been changed
     private static final int MAX_INPUT_LENGTH = 30;
 
 
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         if (currentInput.length() >= MAX_INPUT_LENGTH) {
             return; //prevent buffer overflow
         }
-        signChanged = false;
+        //signChanged = false;
         if (currentInput.length() == 0 || currentInput.toString().equals("0")) {
             currentInput.setLength(0); // clear
         }
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         primaryTextView.setText(currentInput.toString());
     }
     private void appendOperator(String operator) {
-        signChanged = false;
+        //signChanged = false;
         // if the current input is empty or just "0"
         if (currentInput.length() == 0 || currentInput.toString().equals("0")) {
             currentInput.setLength(0); //clear
@@ -193,17 +193,24 @@ public class MainActivity extends AppCompatActivity {
         primaryTextView.setText(currentInput.toString());
     }
     private void changeSign() {
-        if (currentInput.length() == 0 || signChanged) {
-            return; // Nothing to change
+        if (currentInput.length() == 0) {
+            return; // nothing to change
         }
 
         // the last number in the current input
         int lastIndex = currentInput.length() - 1;
         StringBuilder number = new StringBuilder();
 
+        // extract the number (including the negative sign if present)
         while (lastIndex >= 0 && (Character.isDigit(currentInput.charAt(lastIndex)) || currentInput.charAt(lastIndex) == '.')) {
             number.insert(0, currentInput.charAt(lastIndex)); // Prepend to the number
             lastIndex--;
+        }
+
+        // check if the number is already negated
+        if (lastIndex >= 0 && currentInput.charAt(lastIndex) == '-') {
+            number.insert(0, '-'); // include the negative sign
+            lastIndex--; //index back
         }
 
         // if the last character before the number is an operator or if there's no number
@@ -211,18 +218,20 @@ public class MainActivity extends AppCompatActivity {
         if (number.length() > 0) {
             String currentNumber = number.toString();
             double num = Double.parseDouble(currentNumber);
-            num = -num; // Change sign
+
+            // change sign
+            num = -num;
 
             // replace the last number in the input with its negated value
             String newNumber = String.valueOf(num);
             currentInput.delete(lastIndex + 1, currentInput.length()); // remove the last number
-            currentInput.append(newNumber);
+            currentInput.append(newNumber); // new number with changed sign
 
             primaryTextView.setText(currentInput.toString());
-
-            signChanged = true;
         }
     }
+
+
 
 
 
@@ -236,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 // update the primary TV
                 primaryTextView.setText(String.valueOf(result));
                 secondaryTextView.setText(expression);
-                signChanged = false;
+                //signChanged = false;
                 currentInput.setLength(0); // Clear the current input after calculation if needed
                 currentInput.append(result); // Optionally store the result for further calculations
             } catch (Exception ex) {
