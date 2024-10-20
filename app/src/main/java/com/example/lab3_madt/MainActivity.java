@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void appendToInput(String value) {
         signChanged = false;
-        if (currentInput.length() == 0 || currentInput.toString().equals("0") || currentInput.toString().equals("√")) {
+        if (currentInput.length() == 0 || currentInput.toString().equals("0")) {
             currentInput.setLength(0); // clear
         }
         // prevent more than 2 ^^ (tetration)
